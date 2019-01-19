@@ -7,29 +7,27 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("customerService")
+//@Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
     private CustomerRepository customerRepository;
 
     public CustomerServiceImpl() {
     }
 
     public CustomerServiceImpl(CustomerRepository customerRepository) {
+        System.out.println("Constructor injection");
         this.customerRepository = customerRepository;
     }
 
-
+    @Autowired
     public void setCustomerRepository(CustomerRepository customerRepository) {
+        System.out.println("Setter injection");
         this.customerRepository = customerRepository;
     }
-
 
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
-
-
 }
